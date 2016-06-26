@@ -70,9 +70,9 @@ int main()
 	if (tests_failed)
 	{
 		printf("TEST SUIT FAILED\n");
-		exit(0);
+		exit(1);
 	}
 
 	printf("TEST SUIT PASSED\n");
-	exit(1);
+	exit(0);
 }
