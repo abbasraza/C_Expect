@@ -1,22 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "c_expect.h"
+#include "tests.h"
 
-int validate_fn(int param);
-void test_condition(uint8_t result, uint8_t expected, const char * file, int line); 
-#define expect(result, expected) test_condition(result, expected, __FUNCTION__, __LINE__)
+struct test tests[] = {{"test1", test1}};
+
 uint8_t tests_executed;
 uint8_t tests_passed;
 uint8_t tests_failed;
 uint8_t conditions_executed;
 uint8_t conditions_passed;
 uint8_t conditions_failed;
-
-struct test
-{
-	char * name;
-	void (*fptr)(void);
-};
 
 void test_condition(uint8_t result, uint8_t expected, const char * file, int line) 
 {
@@ -33,26 +28,8 @@ void test_condition(uint8_t result, uint8_t expected, const char * file, int lin
 	}
 }
 
-int validate_fn(int param)
-{
-	return param;
-}
-
-void test1(void)
-{
-	expect(validate_fn(1), true);
-	expect(validate_fn(0), true);
-}
-
-void test2(void)
-{
-	expect(validate_fn(1), true);
-	expect(validate_fn(0), true);
-}
-
 int main()
 {
-	struct test tests[] = {{"test1", test1}, {"test2", test2}};
 
 	uint8_t i = 0;
 	for (i = 0; i < sizeof(tests) / sizeof(struct test); ++i)

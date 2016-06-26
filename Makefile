@@ -1,5 +1,5 @@
-EXEC = testf
-SRC = testf.c
+EXEC = c_expect
+SRC = c_expect.c test1.c
 
 all:
 	gcc -o $(EXEC) $(SRC)
