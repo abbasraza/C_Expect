@@ -4,7 +4,10 @@
 #include "c_expect.h"
 #include "tests.h"
 
-struct test tests[] = {{"test1", test1}};
+struct test tests[] = {
+						{"test1", test1},
+						{"test2", test2}
+					  };
 
 uint8_t tests_executed;
 uint8_t tests_passed;
@@ -36,7 +39,7 @@ int main()
 	{
 		if (tests[i].fptr)
 		{
-			printf("Executing test named:%s\n", tests[i].name);
+			printf("\n\n################# Executing test named:%s\n", tests[i].name);
 			++tests_executed;
 			tests[i].fptr();
 			printf("Test:%s conditions executed :%d\n", tests[i].name, conditions_executed);
@@ -45,12 +48,12 @@ int main()
 			
 			if (conditions_failed)
 			{
-				printf("Test:%s FAILED\n", tests[i].name);
+				printf("################# Test:%s FAILED\n\n", tests[i].name);
 				++tests_failed;
 			}
 			else
 			{
-				printf("Test:%s PASSED\n", tests[i].name);
+				printf("################### Test:%s PASSED\n\n", tests[i].name);
 				++tests_passed;
 			}
 			conditions_executed = 0;
@@ -69,7 +72,6 @@ int main()
 		printf("TEST SUIT FAILED\n");
 		exit(0);
 	}
-
 
 	printf("TEST SUIT PASSED\n");
 	exit(1);
